@@ -1,0 +1,23 @@
+mkdir node_review
+cd node_review
+code .
+npm init -y
+yarn add nodemon -D
+npm i knex pg express  //postgres, knex(orm) e express(framework de rotas)
+npm start ou yarn start para iniciar o projeto
+
+npx knex:init //cria o knexfile.js e inicia o knex no diretorio
+npx knex migrate:make create_table_users //cria o arquivo da migration referida
+npx knex migrate:latest
+npx knex seed:make 001_users
+
+muda de table_name para users
+
+npx knex seed:run
+npx knex migrate:make create_projects_table
+npx knex migrate:latest
+npx knex seed:make 002_projects
+npx knex seed:run //isso vai rodar tds as seed outra vez, entao serao excluidos os usuarios
+
+//por isso a partir de agora deve ser gerada assim
+npx knex seed:run --specific 002_projects.js
